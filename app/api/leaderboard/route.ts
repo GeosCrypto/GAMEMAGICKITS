@@ -27,7 +27,8 @@ export async function GET() {
     }));
 
     return NextResponse.json({ data: entries, error: null });
-  } catch {
+  } catch (err) {
+    console.error('[GET /api/leaderboard]', err);
     return NextResponse.json({ data: [], error: null });
   }
 }

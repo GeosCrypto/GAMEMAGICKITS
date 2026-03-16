@@ -22,7 +22,8 @@ export async function GET(request: NextRequest) {
     if (error) throw error;
 
     return NextResponse.json({ data: data ?? [], error: null });
-  } catch {
+  } catch (err) {
+    console.error('[GET /api/markets]', err);
     return NextResponse.json({ data: [], error: null });
   }
 }

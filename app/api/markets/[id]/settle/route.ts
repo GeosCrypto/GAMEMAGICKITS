@@ -84,7 +84,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           const newXP = (profile.xp ?? 0) + 100;
           const newCredits = (profile.total_credits ?? 0) + reward;
           const newWins = (profile.wins_count ?? 0) + 1;
-          const winRate = ((newWins / Math.max(profile.predictions_count, 1)) * 100);
+          const totalPreds = profile.predictions_count ?? 1;
+          const winRate = (newWins / Math.max(totalPreds, 1)) * 100;
 
           await admin.from('user_profiles').update({
             total_credits: newCredits,
